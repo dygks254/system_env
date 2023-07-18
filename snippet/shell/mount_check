@@ -1,0 +1,107 @@
+#!/usr/bin/bash
+
+declare -A target_1=(
+    [target]="/data/users/designkit"
+    [source]="semi06:/home/designkit"
+)
+
+declare -A target_2=(
+    [target]="/data/IP/IP-INVENTORY"
+    [source]="green:/data/semifive/IP/IP-INVENTORY"
+)
+declare -A target_3=(
+    [target]="/data/IP/samsung"
+    [source]="green:/data/semifive/IP/samsung"
+)
+declare -A target_4=(
+    [target]="/data/IP/RAW-PILE"
+    [source]="green:/data/semifive/IP/RAW-PILE"
+)
+declare -A target_5=(
+    [target]="/tool/EDA"
+    [source]="green:/data/appl/EDA"
+)
+declare -A target_6=(
+    [target]="/tools/Cadence"
+    [source]="green:/data/appl/Cadence"
+)
+declare -A target_7=(
+    [target]="/tools/Synopsys"
+    [source]="green:/data/appl/Synopsys"
+)
+declare -A target_8=(
+    [target]="/tools/synopsys"
+    [source]="green:/data/appl/Synopsys"
+)
+declare -A target_9=(
+    [target]="/tools/LICENSE"
+    [source]="green:/data/appl/LICENSE"
+)
+declare -A target_10=(
+    [target]="/tools/Mentor"
+    [source]="green:/data/appl/Mentor"
+)
+declare -A target_11=(
+    [target]="/tools/ANSYS"
+    [source]="green:/data/appl/ANSYS"
+)
+declare -A target_12=(
+    [target]="/tools/xilinx"
+    [source]="green:/data/appl/xilinx"
+)
+declare -A target_13=(
+    [target]="/user/atom"
+    [source]="tiger18:/data/fserver9/users/atom"
+)
+declare -A target_14=(
+    [target]="/user/antara"
+    [source]="fserver10:/data/users/antara"
+)
+declare -A target_15=(
+    [target]="/user/release"
+    [source]="probe01:/data/fserver7/users/release"
+)
+declare -A target_16=(
+    [target]="/user/slurm"
+    [source]="fserver1:/data/users/slurm"
+)
+declare -A target_17=(
+    [target]="/semifive/designkit"
+    [source]="semi06:/home/designkit"
+)
+declare -A target_18=(
+    [target]="/semifive/designkit2"
+    [source]="semi07:/home/designkit2"
+)
+declare -A target_19=(
+    [target]="/semifive/tools"
+    [source]="green:/data/semifive/tools"
+)
+declare -A target_20=(
+    [target]="/sifive/library"
+    [source]="green:/data/sifive/library"
+)
+declare -A target_21=(
+    [target]="/sifive/tools"
+    [source]="green:/data/sifive/tools"
+)
+declare -A target_22=(
+    [target]="/sifive/ip"
+    [source]="green:/data/sifive/ip"
+)
+declare -A target_23=(
+    [target]="/sifive/vip"
+    [source]="green:/data/sifive/vip"
+)
+
+for (( i=1; i<24; i++ )); do
+    tar=target_$i[target]
+    sou=target_$i[source]
+
+    df ${!tar} | grep ${!sou}
+    if [ $? -eq 0 ];then
+        echo "source: ${!sou} mounted on ${!tar}"
+        else
+        echo "source: ${!sou} not mounted on ${!tar}"
+        fi
+done
